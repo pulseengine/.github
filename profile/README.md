@@ -1,69 +1,167 @@
-# PulseEngine: AI + WebAssembly Infrastructure (Work in Progress)
+<div align="center">
 
-**Building the intersection of AI and WebAssembly - from safety-critical runtimes to AI-native applications**
+# PulseEngine
 
-## About PulseEngine
+### Infrastructure for AI and WebAssembly Integration
 
-PulseEngine is developing infrastructure at the intersection of AI and WebAssembly. Our projects range from experimental proposals to battle-tested implementations, all focused on enabling AI systems to safely interact with real-world systems through WebAssembly's security model.
+*Building secure, portable systems where AI agents interact safely with real-world applications*
 
-## Our Projects
+<br>
 
-### 🔧 [wrt](https://github.com/pulseengine/wrt) - WebAssembly Runtime (95% complete)
-A safety-critical WebAssembly runtime supporting both Core WebAssembly and Component Model. Designed for ASIL-B compliance with features like Control Flow Integrity, fuel-based execution limiting, and support for no_std environments. Nearly production-ready for embedded and safety-critical applications.
+![Rust](https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white)
+![WebAssembly](https://img.shields.io/badge/WebAssembly-654FF0?style=flat&logo=webassembly&logoColor=white)
+![Bazel](https://img.shields.io/badge/Bazel-43A047?style=flat&logo=bazel&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
 
-### 🤖 [mcp](https://github.com/pulseengine/mcp) - Rust MCP Framework (Production-tested)
-A comprehensive framework for building Model Context Protocol servers in Rust. Extracted from a real-world home automation server with 30+ tools that successfully integrates with MCP Inspector, Claude Desktop, and HTTP clients. The most mature of our projects.
+</div>
 
-### 🎨 [glsp-mcp](https://github.com/pulseengine/glsp-mcp) - AI-Native Graphical Modeling (MVP)
-World's first AI-native implementation of the Graphical Language Server Protocol using MCP. Enables AI agents to create and manipulate diagrams through natural language. Includes a WebAssembly-based ADAS demo showing how WASM components can simulate automotive systems. Functional MVP demonstrating the concept.
+<br>
 
-### 🏗️ [rules_wasm_component](https://github.com/pulseengine/rules_wasm_component) - Bazel Build Rules (Active Development)
-Modern Bazel rules for building WebAssembly components with multi-profile support. Features 73% faster builds and 99% less disk usage through symlink optimization. Supports Rust, C/C++, and provides seamless integration with the Component Model toolchain.
+## What We're Building
 
-### 📐 [wasi-mcp](https://github.com/pulseengine/wasi-mcp) - WASI API Proposal (Early Stage)
-A proposed WebAssembly System Interface API for the Model Context Protocol, targeting WASI Preview3. This early-stage proposal aims to standardize how WebAssembly components can act as MCP servers and clients, leveraging WASI's security model for safe AI integration.
+PulseEngine develops infrastructure at the intersection of AI and WebAssembly. Our work ranges from experimental proposals to production-tested implementations, focused on enabling AI systems to safely interact with real-world systems through WebAssembly's capability-based security model.
 
-## Our Vision
+<br>
 
-We're exploring what happens when AI systems can safely interact with real-world systems through WebAssembly's security sandbox. Our work spans:
+## Projects
 
-- **Safety-Critical Systems**: Building infrastructure suitable for automotive, medical, and industrial applications
-- **AI-Native Development**: Creating tools that assume AI agents are first-class participants in the development process
-- **Secure Integration**: Using WebAssembly's capability-based security for safe AI-to-system interaction
-- **Universal Portability**: Write once, run anywhere - from embedded devices to cloud servers
+<table>
+<tr>
+<td width="50%">
 
-## The Rhythm of Our Work
+### [wrt](https://github.com/pulseengine/wrt)
+**WebAssembly Runtime**
 
-Looking across our repositories, there's a clear pattern:
+Safety-critical runtime supporting Core WebAssembly and Component Model. Designed for ASIL-B compliance with Control Flow Integrity, fuel-based execution limiting, and `no_std` support.
 
-1. **Foundation Layer**: WRT provides the bulletproof WebAssembly runtime that everything builds on
-2. **Bridge Layer**: MCP and WASI-MCP enable AI systems to interact with WebAssembly components
-3. **Application Layer**: GLSP-MCP demonstrates AI-native applications built on this infrastructure
-4. **Developer Experience**: Bazel rules make it practical to build and deploy these systems
+**Status:** 95% complete
+**Target:** Embedded and safety-critical systems
 
-Each project reinforces the others, creating a cohesive ecosystem for AI-WebAssembly integration.
+</td>
+<td width="50%">
 
-## Project Status
+### [mcp](https://github.com/pulseengine/mcp)
+**Rust MCP Framework**
 
-- ✅ **Production-Ready**: MCP Rust framework (extracted from working system)
-- 🔄 **Nearly Complete**: WRT WebAssembly runtime (95% done, fixing final issues)
-- 🚧 **Active Development**: Bazel build rules, GLSP-MCP platform
-- 📝 **Early Proposal**: WASI-MCP standardization effort
+Framework for building Model Context Protocol servers. Extracted from a production home automation server with 30+ tools. Works with MCP Inspector, Claude Desktop, and HTTP clients.
 
-## Why This Matters
+**Status:** Production-tested
+**Maturity:** Most stable project
 
-Traditional AI systems are limited by their isolation from real-world systems. WebAssembly's security model offers a unique opportunity to safely bridge this gap. By building infrastructure that assumes AI agents are first-class citizens, we're working toward a future where:
+</td>
+</tr>
+<tr>
+<td width="50%">
 
-- AI can safely control physical systems in cars, factories, and homes
-- Developers can build AI-aware applications with confidence in their security
-- The same code runs everywhere from tiny embedded devices to massive cloud deployments
+### [glsp-mcp](https://github.com/pulseengine/glsp-mcp)
+**AI-Native Graphical Modeling**
 
-## Get Involved
+First AI-native implementation of Graphical Language Server Protocol using MCP. Enables AI agents to create and manipulate diagrams through natural language. Includes WebAssembly-based ADAS simulation.
 
-This is all work in progress, and we're excited about where it's heading. Whether you're into AI, WebAssembly, safety-critical systems, or just think this intersection is as cool as we do - there's plenty to explore and contribute to.
+**Status:** Functional MVP
+**Innovation:** AI-native diagramming
 
-Check out our individual repositories for detailed documentation, examples, and contribution guidelines.
+</td>
+<td width="50%">
+
+### [rules_wasm_component](https://github.com/pulseengine/rules_wasm_component)
+**Bazel Build Rules**
+
+Modern Bazel rules for WebAssembly components with multi-profile support. Delivers 73% faster builds and 99% less disk usage through symlink optimization.
+
+**Status:** Active development
+**Supports:** Rust, C/C++, Component Model
+
+</td>
+</tr>
+<tr>
+<td colspan="2">
+
+### [wasi-mcp](https://github.com/pulseengine/wasi-mcp)
+**WASI API Proposal**
+
+Proposed WebAssembly System Interface API for Model Context Protocol, targeting WASI Preview3. Aims to standardize how WebAssembly components act as MCP servers and clients.
+
+**Status:** Early-stage proposal
+**Goal:** Standardization for WASI ecosystem
+
+</td>
+</tr>
+</table>
+
+<br>
+
+## Architecture
+
+Our projects form an integrated stack:
+
+```
+┌─────────────────────────────────────────────────┐
+│         Application Layer                       │
+│  glsp-mcp: AI-native applications               │
+└─────────────────────────────────────────────────┘
+                      ↕
+┌─────────────────────────────────────────────────┐
+│         Bridge Layer                            │
+│  mcp: AI-system integration                     │
+│  wasi-mcp: Standardized interface               │
+└─────────────────────────────────────────────────┘
+                      ↕
+┌─────────────────────────────────────────────────┐
+│         Foundation Layer                        │
+│  wrt: Safety-critical WASM runtime              │
+└─────────────────────────────────────────────────┘
+                      ↕
+┌─────────────────────────────────────────────────┐
+│         Developer Experience                    │
+│  rules_wasm_component: Build tooling            │
+└─────────────────────────────────────────────────┘
+```
+
+<br>
+
+## Vision
+
+We're exploring what becomes possible when AI systems can safely interact with real-world systems through WebAssembly's security sandbox.
+
+**Our focus areas:**
+
+| Area | Description |
+|------|-------------|
+| **Safety-Critical Systems** | Infrastructure for automotive (ASIL-B), medical, and industrial applications |
+| **AI-Native Development** | Tools that treat AI agents as first-class participants |
+| **Secure Integration** | Capability-based security for AI-to-system interaction |
+| **Universal Portability** | Same code from embedded devices to cloud servers |
+
+<br>
+
+## Current Status
+
+| Stage | Projects |
+|-------|----------|
+| ✅ **Production** | MCP framework (30+ tools in production) |
+| 🔄 **Near Complete** | WRT runtime (95% done, addressing final issues) |
+| 🚧 **Active Development** | Bazel rules, GLSP-MCP platform |
+| 📝 **Proposal** | WASI-MCP standardization |
+
+<br>
+
+## The Opportunity
+
+Traditional AI systems operate in isolation from real-world systems. WebAssembly's security model offers a path to safely bridge this gap. By treating AI agents as first-class citizens in our infrastructure, we're working toward systems where:
+
+- AI safely controls physical systems in vehicles, factories, and homes
+- Developers build AI-aware applications with security guarantees
+- Code runs consistently from microcontrollers to cloud infrastructure
+
+<br>
 
 ---
 
-*Building the infrastructure for a future where AI and WebAssembly work together seamlessly and safely.*
+<div align="center">
+
+*Work in progress. Contributions welcome.*
+
+[Explore Our Repositories →](https://github.com/orgs/pulseengine/repositories)
+
+</div>
