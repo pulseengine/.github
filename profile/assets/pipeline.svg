@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 128" fill="none">
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+
+    .box { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1.2; }
+    .name { fill: #1f2328; font-size: 15px; font-weight: 600; }
+    .role { fill: #656d76; font-size: 11px; }
+    .proof { fill: #1a7f37; font-size: 10px; font-weight: 500; letter-spacing: 0.3px; }
+    .arrow-line { stroke: #654FF0; stroke-width: 1.5; }
+    .arrow-head { fill: #654FF0; }
+    .wsc-line { stroke: #1a7f37; stroke-width: 1; stroke-dasharray: 5 3; }
+    .wsc-label { fill: #1a7f37; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; }
+    .input { fill: #656d76; font-size: 12px; }
+
+    @media (prefers-color-scheme: dark) {
+      .box { fill: #161b22; stroke: #30363d; }
+      .name { fill: #e6edf3; }
+      .role { fill: #8b949e; }
+      .proof { fill: #3fb950; }
+      .arrow-line { stroke: #8b8fff; }
+      .arrow-head { fill: #8b8fff; }
+      .wsc-line { stroke: #3fb950; }
+      .wsc-label { fill: #3fb950; }
+      .input { fill: #8b949e; }
+    }
+  </style>
+
+  <!-- WSC spanning label and dashed line -->
+  <text class="wsc-label" x="490" y="16" text-anchor="middle">wsc · attest · sign · verify</text>
+  <line class="wsc-line" x1="158" y1="28" x2="823" y2="28" />
+
+  <!-- Input -->
+  <text class="input" x="75" y="70" text-anchor="middle">.wasm</text>
+  <line class="arrow-line" x1="108" y1="67" x2="148" y2="67" />
+  <polygon class="arrow-head" points="148,63 158,67 148,71" />
+
+  <!-- Meld -->
+  <rect class="box" x="158" y="42" width="125" height="50" rx="8" />
+  <text class="name" x="220" y="64" text-anchor="middle">Meld</text>
+  <text class="role" x="220" y="80" text-anchor="middle">fuse</text>
+  <text class="proof" x="220" y="110" text-anchor="middle">Rocq</text>
+
+  <!-- Arrow Meld → Loom -->
+  <line class="arrow-line" x1="283" y1="67" x2="328" y2="67" />
+  <polygon class="arrow-head" points="328,63 338,67 328,71" />
+
+  <!-- Loom -->
+  <rect class="box" x="338" y="42" width="125" height="50" rx="8" />
+  <text class="name" x="400" y="64" text-anchor="middle">Loom</text>
+  <text class="role" x="400" y="80" text-anchor="middle">optimize</text>
+  <text class="proof" x="400" y="110" text-anchor="middle">Rocq + Z3</text>
+
+  <!-- Arrow Loom → Synth -->
+  <line class="arrow-line" x1="463" y1="67" x2="508" y2="67" />
+  <polygon class="arrow-head" points="508,63 518,67 508,71" />
+
+  <!-- Synth -->
+  <rect class="box" x="518" y="42" width="125" height="50" rx="8" />
+  <text class="name" x="580" y="64" text-anchor="middle">Synth</text>
+  <text class="role" x="580" y="80" text-anchor="middle">compile</text>
+  <text class="proof" x="580" y="110" text-anchor="middle">Z3</text>
+
+  <!-- Arrow Synth → Kiln -->
+  <line class="arrow-line" x1="643" y1="67" x2="688" y2="67" />
+  <polygon class="arrow-head" points="688,63 698,67 688,71" />
+
+  <!-- Kiln -->
+  <rect class="box" x="698" y="42" width="125" height="50" rx="8" />
+  <text class="name" x="760" y="64" text-anchor="middle">Kiln</text>
+  <text class="role" x="760" y="80" text-anchor="middle">fire</text>
+  <text class="proof" x="760" y="110" text-anchor="middle">Kani</text>
+</svg>

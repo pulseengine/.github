@@ -35,14 +35,9 @@
 
 Meld fuses. Loom optimizes. Synth compiles. Kiln fires. WSC verifies every step.
 
-```
-                wsc ── attest · sign · verify
-              ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-
-  .wasm  ───►  Meld  ───►  Loom  ───►  Synth  ───►  Kiln
-               fuse        optimize     compile      fire
-               Rocq        Rocq + Z3    Z3           Kani
-```
+<div align="center">
+<img src="./assets/pipeline.svg" alt="PulseEngine Pipeline: .wasm → Meld (fuse, Rocq) → Loom (optimize, Rocq+Z3) → Synth (compile, Z3) → Kiln (fire, Kani) — with WSC attestation at every stage" width="800">
+</div>
 
 &nbsp;
 
