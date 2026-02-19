@@ -24,7 +24,7 @@
   ·
   <a href="https://github.com/pulseengine/synth">Synth</a>
   ·
-  <a href="https://github.com/pulseengine/wsc">Sigil</a>
+  <a href="https://github.com/pulseengine/sigil">Sigil</a>
 </h6>
 
 </div>
@@ -33,10 +33,10 @@
 
 ## The Pipeline
 
-Meld fuses. Loom weaves. Synth compiles. Kiln fires. Sigil seals.
+Meld fuses. Loom weaves. Synth transpiles. Kiln fires. Sigil seals.
 
 <div align="center">
-<img src="./assets/pipeline.svg" alt="PulseEngine Pipeline: .wasm → Meld (fuse, Rocq) → Loom (optimize, Rocq+Z3) → Synth (compile, Z3) → Kiln (fire, Kani) — with Sigil attestation at every stage" width="800">
+<img src="./assets/pipeline.svg" alt="PulseEngine Pipeline: .wasm → Meld (fuse) → Loom (optimize) → Synth (transpile) → Kiln (fire) — with Sigil attestation at every stage" width="800">
 </div>
 
 &nbsp;
@@ -47,18 +47,14 @@ Meld fuses. Loom weaves. Synth compiles. Kiln fires. Sigil seals.
 
 ### [Meld](https://github.com/pulseengine/meld)
 
-![Rocq](https://img.shields.io/badge/verified_with-Rocq-00C853?style=flat-square&labelColor=1a1b27)
-
-Statically fuses multiple WebAssembly P2/P3 components into a single core module. Import resolution, index-space merging, and canonical ABI adapter generation happen at build time — runtime linking eliminated entirely. Every transformation carries Rocq mechanized proofs covering parsing, resolution, merging, and adapter correctness.
+Statically fuses multiple WebAssembly P2/P3 components into a single core module. Import resolution, index-space merging, and canonical ABI adapter generation happen at build time — runtime linking eliminated entirely. Every transformation carries mechanized proofs covering parsing, resolution, merging, and adapter correctness.
 
 </td>
 <td width="50%" valign="top">
 
 ### [Loom](https://github.com/pulseengine/loom)
 
-![Rocq + Z3](https://img.shields.io/badge/verified_with-Rocq_+_Z3-00C853?style=flat-square&labelColor=1a1b27)
-
-Twelve-pass WebAssembly optimization pipeline built on Cranelift's ISLE pattern-matching engine. Constant folding, strength reduction, CSE, inlining, dead code elimination — each pass proven correct through Z3 SMT translation validation and Rocq mechanized proofs. Includes a fused mode purpose-built for Meld output.
+Twelve-pass WebAssembly optimization pipeline built on Cranelift's ISLE pattern-matching engine. Constant folding, strength reduction, CSE, inlining, dead code elimination — each pass proven correct through SMT translation validation and mechanized proofs. Includes a fused mode purpose-built for Meld output.
 
 </td>
 </tr>
@@ -67,19 +63,16 @@ Twelve-pass WebAssembly optimization pipeline built on Cranelift's ISLE pattern-
 
 ### [Synth](https://github.com/pulseengine/synth)
 
-![Z3](https://img.shields.io/badge/verified_with-Z3-00C853?style=flat-square&labelColor=1a1b27)
-
-Compiles WebAssembly to native ARM for embedded Cortex-M targets. Not just translation — program synthesis: exploring equivalent implementations for provably optimal native code. Pattern-based instruction selection, AAPCS calling conventions, and ELF generation. Z3 translation validation ensures the compiled output faithfully preserves WebAssembly semantics.
+Transpiles WebAssembly to native ARM for embedded Cortex-M targets. Not just translation — program synthesis: exploring equivalent implementations for provably optimal native code. Pattern-based instruction selection, AAPCS calling conventions, and ELF generation. Translation validation ensures the transpiled output faithfully preserves WebAssembly semantics.
 
 </td>
 <td width="50%" valign="top">
 
 ### [Kiln](https://github.com/pulseengine/kiln)
 
-![Kani](https://img.shields.io/badge/verified_with-Kani-00C853?style=flat-square&labelColor=1a1b27)
 ![no_std](https://img.shields.io/badge/no__std-compatible-654FF0?style=flat-square&labelColor=1a1b27)
 
-WebAssembly runtime for safety-critical systems. Full Component Model and WASI Preview 2 support with a modular `no_std` architecture for embedded, automotive, medical, and aerospace environments. Bounded allocations, deterministic execution, and memory safety guaranteed through Kani bounded model checking.
+WebAssembly runtime for safety-critical systems. Full Component Model and WASI Preview 2 support with a modular `no_std` architecture for embedded, automotive, medical, and aerospace environments. Bounded allocations, deterministic execution, and memory safety through bounded model checking and formal verification.
 
 </td>
 </tr>
@@ -87,7 +80,7 @@ WebAssembly runtime for safety-critical systems. Full Component Model and WASI P
 
 &nbsp;
 
-### [Sigil](https://github.com/pulseengine/wsc) &mdash; Supply Chain Security
+### [Sigil](https://github.com/pulseengine/sigil) &mdash; Supply Chain Security
 
 ![Sigstore](https://img.shields.io/badge/Sigstore-keyless_signing-654FF0?style=flat-square&labelColor=1a1b27)
 ![SLSA](https://img.shields.io/badge/SLSA-L4_provenance-00C853?style=flat-square&labelColor=1a1b27)
@@ -99,7 +92,7 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 &nbsp;
 
 > [!NOTE]
-> **Correctness at every layer** &mdash; Kani bounded model checking in the runtime, Rocq mechanized proofs for fusion and optimization, Z3 SMT verification for compilation, and Sigil attestation chains binding it all together. No transformation ships without a proof.
+> **Correctness at every layer** &mdash; Rocq mechanized proofs, Kani bounded model checking, Z3 SMT verification, and Verus Rust verification are used across the toolchain — not confined to individual projects. Sigil attestation chains bind it all together. No transformation ships without a proof.
 
 &nbsp;
 
@@ -110,6 +103,7 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 
 - [**rules_wasm_component**](https://github.com/pulseengine/rules_wasm_component) &mdash; Bazel rules for WebAssembly Component Model across Rust, Go, C++, and JavaScript
 - [**rules_rocq_rust**](https://github.com/pulseengine/rules_rocq_rust) &mdash; Bazel rules for Rocq theorem proving and Rust formal verification with hermetic Nix toolchains
+- [**rules_verus**](https://github.com/pulseengine/rules_verus) &mdash; Bazel rules for Verus Rust verification
 - [**rules_moonbit**](https://github.com/pulseengine/rules_moonbit) &mdash; Bazel rules for MoonBit with hermetic toolchain support
 
 </details>
@@ -143,6 +137,6 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 
 <div align="center">
 
-<sub>Rust · WebAssembly Component Model · WASI Preview 2/3 · Bazel · Rocq · Z3 · Kani · Sigstore</sub>
+<sub>Rust · WebAssembly Component Model · WASI Preview 2/3 · Bazel · Rocq · Z3 · Kani · Verus · Sigstore</sub>
 
 </div>
