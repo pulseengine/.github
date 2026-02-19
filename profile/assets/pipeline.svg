@@ -25,8 +25,8 @@
     }
   </style>
 
-  <!-- WSC spanning label and dashed line -->
-  <text class="wsc-label" x="490" y="16" text-anchor="middle">wsc · attest · sign · verify</text>
+  <!-- Sigil spanning label and dashed line -->
+  <text class="wsc-label" x="490" y="16" text-anchor="middle">sigil · attest · sign · verify</text>
   <line class="wsc-line" x1="158" y1="28" x2="823" y2="28" />
 
   <!-- Input -->

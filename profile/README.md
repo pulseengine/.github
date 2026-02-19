@@ -24,7 +24,7 @@
   ·
   <a href="https://github.com/pulseengine/synth">Synth</a>
   ·
-  <a href="https://github.com/pulseengine/wsc">WSC</a>
+  <a href="https://github.com/pulseengine/wsc">Sigil</a>
 </h6>
 
 </div>
@@ -33,10 +33,10 @@
 
 ## The Pipeline
 
-Meld fuses. Loom optimizes. Synth compiles. Kiln fires. WSC verifies every step.
+Meld fuses. Loom weaves. Synth compiles. Kiln fires. Sigil seals.
 
 <div align="center">
-<img src="./assets/pipeline.svg" alt="PulseEngine Pipeline: .wasm → Meld (fuse, Rocq) → Loom (optimize, Rocq+Z3) → Synth (compile, Z3) → Kiln (fire, Kani) — with WSC attestation at every stage" width="800">
+<img src="./assets/pipeline.svg" alt="PulseEngine Pipeline: .wasm → Meld (fuse, Rocq) → Loom (optimize, Rocq+Z3) → Synth (compile, Z3) → Kiln (fire, Kani) — with Sigil attestation at every stage" width="800">
 </div>
 
 &nbsp;
@@ -87,7 +87,7 @@ WebAssembly runtime for safety-critical systems. Full Component Model and WASI P
 
 &nbsp;
 
-### [WSC](https://github.com/pulseengine/wsc) &mdash; Supply Chain Security
+### [Sigil](https://github.com/pulseengine/wsc) &mdash; Supply Chain Security
 
 ![Sigstore](https://img.shields.io/badge/Sigstore-keyless_signing-654FF0?style=flat-square&labelColor=1a1b27)
 ![SLSA](https://img.shields.io/badge/SLSA-L4_provenance-00C853?style=flat-square&labelColor=1a1b27)
@@ -99,7 +99,7 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 &nbsp;
 
 > [!NOTE]
-> **Correctness at every layer** &mdash; Kani bounded model checking in the runtime, Rocq mechanized proofs for fusion and optimization, Z3 SMT verification for compilation, and WSC attestation chains binding it all together. No transformation ships without a proof.
+> **Correctness at every layer** &mdash; Kani bounded model checking in the runtime, Rocq mechanized proofs for fusion and optimization, Z3 SMT verification for compilation, and Sigil attestation chains binding it all together. No transformation ships without a proof.
 
 &nbsp;
 
