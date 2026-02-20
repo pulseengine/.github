@@ -43,5 +43,5 @@ jobs:
       - name: Validate SVG
         run: |
           # Check SVG is well-formed XML
-          xmllint --noout profile/assets/pipeline.svg
+          python3 -c "import xml.etree.ElementTree as ET; ET.parse('profile/assets/pipeline.svg')"
           echo "SVG is valid"
