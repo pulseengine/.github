@@ -35,9 +35,22 @@
 
 Meld fuses. Loom weaves. Synth transpiles. Kiln fires. Sigil seals.
 
-<div align="center">
-<img src="./assets/pipeline.svg" alt="PulseEngine Pipeline: .wasm → Meld (fuse) → Loom (optimize) → Synth (transpile) → Kiln (fire) — with Sigil attestation at every stage" width="800">
-</div>
+<table align="center">
+<tr>
+  <td align="center"><code>.wasm</code></td>
+  <td align="center">&nbsp;→&nbsp;</td>
+  <td align="center"><a href="https://github.com/pulseengine/meld"><strong>Meld</strong><br><sub>fuse</sub></a></td>
+  <td align="center">&nbsp;→&nbsp;</td>
+  <td align="center"><a href="https://github.com/pulseengine/loom"><strong>Loom</strong><br><sub>optimize</sub></a></td>
+  <td align="center">&nbsp;→&nbsp;</td>
+  <td align="center"><a href="https://github.com/pulseengine/synth"><strong>Synth</strong><br><sub>transpile</sub></a></td>
+  <td align="center">&nbsp;→&nbsp;</td>
+  <td align="center"><a href="https://github.com/pulseengine/kiln"><strong>Kiln</strong><br><sub>fire</sub></a></td>
+</tr>
+<tr>
+  <td colspan="9" align="center"><sub><a href="https://github.com/pulseengine/sigil">sigil</a> · attest · sign · verify</sub></td>
+</tr>
+</table>
 
 &nbsp;
 
