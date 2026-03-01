@@ -127,7 +127,6 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 &nbsp;
 
 - [**mcp**](https://github.com/pulseengine/mcp) &mdash; Rust framework for building Model Context Protocol servers and clients, published to crates.io
-- [**glsp-mcp**](https://github.com/pulseengine/glsp-mcp) &mdash; AI-native graphical modeling with MCP integration and WebAssembly component execution
 - [**wasi-mcp**](https://github.com/pulseengine/wasi-mcp) &mdash; Proposed WASI API for Model Context Protocol, targeting WASI 0.3 standardization
 
 </details>
