@@ -60,7 +60,7 @@ Meld fuses. Loom weaves. Synth transpiles. Kiln fires. Sigil seals.
 
 ### [Meld](https://github.com/pulseengine/meld)
 
-Statically fuses multiple WebAssembly P2/P3 components into a single core module. Import resolution, index-space merging, and canonical ABI adapter generation happen at build time — runtime linking eliminated entirely. Every transformation carries mechanized proofs covering parsing, resolution, merging, and adapter correctness.
+Statically fuses multiple WebAssembly components into a single core module. Import resolution, index-space merging, and canonical ABI adapter generation happen at build time — runtime linking eliminated entirely. Every transformation carries mechanized proofs covering parsing, resolution, merging, and adapter correctness.
 
 </td>
 <td width="50%" valign="top">
@@ -85,7 +85,7 @@ Transpiles WebAssembly to native ARM for embedded Cortex-M targets. Not just tra
 
 ![no_std](https://img.shields.io/badge/no__std-compatible-654FF0?style=flat-square&labelColor=1a1b27)
 
-WebAssembly runtime for safety-critical systems. Full Component Model and WASI Preview 2 support with a modular `no_std` architecture for embedded, automotive, medical, and aerospace environments. Bounded allocations, deterministic execution, and memory safety through bounded model checking and formal verification.
+WebAssembly runtime for safety-critical systems. Full Component Model and WASI 0.2 support with a modular `no_std` architecture for embedded, automotive, medical, and aerospace environments. Bounded allocations, deterministic execution, and memory safety through bounded model checking and formal verification.
 
 </td>
 </tr>
@@ -128,7 +128,7 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 
 - [**mcp**](https://github.com/pulseengine/mcp) &mdash; Rust framework for building Model Context Protocol servers and clients, published to crates.io
 - [**glsp-mcp**](https://github.com/pulseengine/glsp-mcp) &mdash; AI-native graphical modeling with MCP integration and WebAssembly component execution
-- [**wasi-mcp**](https://github.com/pulseengine/wasi-mcp) &mdash; Proposed WASI API for Model Context Protocol, targeting Preview 3 standardization
+- [**wasi-mcp**](https://github.com/pulseengine/wasi-mcp) &mdash; Proposed WASI API for Model Context Protocol, targeting WASI 0.3 standardization
 
 </details>
 
@@ -150,6 +150,6 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 
 <div align="center">
 
-<sub>Rust · WebAssembly Component Model · WASI Preview 2/3 · Bazel · Rocq · Z3 · Kani · Verus · Sigstore</sub>
+<sub>Rust · WebAssembly Component Model · WASI 0.2 · 0.3 · Bazel · Rocq · Z3 · Kani · Verus · Sigstore</sub>
 
 </div>
