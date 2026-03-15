@@ -13,7 +13,7 @@
 
 &nbsp;
 
-[<kbd> &nbsp; Repositories &nbsp; </kbd>](https://github.com/orgs/pulseengine/repositories) &nbsp;&nbsp; [<kbd> &nbsp; Documentation &nbsp; </kbd>](https://docs.rs/pulseengine-mcp-protocol) &nbsp;&nbsp; [<kbd> &nbsp; Examples &nbsp; </kbd>](https://github.com/pulseengine/wasm-component-examples)
+[<kbd> &nbsp; Repositories &nbsp; </kbd>](https://github.com/orgs/pulseengine/repositories) &nbsp;&nbsp; [<kbd> &nbsp; Website &nbsp; </kbd>](https://pulseengine.eu) &nbsp;&nbsp; [<kbd> &nbsp; Examples &nbsp; </kbd>](https://github.com/pulseengine/wasm-component-examples)
 
 <h6>
   <a href="https://github.com/pulseengine/kiln">Kiln</a>
@@ -110,6 +110,17 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 &nbsp;
 
 <details open>
+<summary><b>Safety-Critical Systems</b></summary>
+
+&nbsp;
+
+- [**gale**](https://github.com/pulseengine/gale) &mdash; Formally verified Rust port of Zephyr RTOS kernel primitives for ASIL-D, dual-track Verus and Rocq verification
+- [**spar**](https://github.com/pulseengine/spar) &mdash; AADL v2.2 architecture analysis toolchain — parser, semantic model, 30+ analyses, and LSP server
+- [**rivet**](https://github.com/pulseengine/rivet) &mdash; Schema-driven SDLC artifact manager for requirements traceability and safety compliance
+
+</details>
+
+<details>
 <summary><b>Build & Verification</b></summary>
 
 &nbsp;
@@ -118,6 +129,7 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 - [**rules_rocq_rust**](https://github.com/pulseengine/rules_rocq_rust) &mdash; Bazel rules for Rocq theorem proving and Rust formal verification with hermetic Nix toolchains
 - [**rules_verus**](https://github.com/pulseengine/rules_verus) &mdash; Bazel rules for Verus Rust verification
 - [**rules_moonbit**](https://github.com/pulseengine/rules_moonbit) &mdash; Bazel rules for MoonBit with hermetic toolchain support
+- [**rules_lean**](https://github.com/pulseengine/rules_lean) &mdash; Bazel rules for Lean 4 with Mathlib and Aeneas integration
 
 </details>
 
@@ -127,7 +139,8 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 &nbsp;
 
 - [**mcp**](https://github.com/pulseengine/mcp) &mdash; Rust framework for building Model Context Protocol servers and clients, published to crates.io
-- [**wasi-mcp**](https://github.com/pulseengine/wasi-mcp) &mdash; Proposed WASI API for Model Context Protocol, targeting WASI 0.3 standardization
+- [**template-mcp-server**](https://github.com/pulseengine/template-mcp-server) &mdash; Scaffolding template for creating MCP servers in Rust
+- [**timedate-mcp**](https://github.com/pulseengine/timedate-mcp) &mdash; MCP server for time and date operations with timezone support, published to npm
 
 </details>
 
@@ -136,9 +149,9 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 
 &nbsp;
 
-- [**thrum**](https://github.com/pulseengine/thrum) &mdash; Gate-based pipeline orchestrator for autonomous AI-driven development
 - [**temper**](https://github.com/pulseengine/temper) &mdash; GitHub App that hardens repositories to organizational standards
 - [**wasm-component-examples**](https://github.com/pulseengine/wasm-component-examples) &mdash; Working examples for Component Model development in C, C++, Go, and Rust
+- [**bazel-file-ops-component**](https://github.com/pulseengine/bazel-file-ops-component) &mdash; WebAssembly-based cross-platform file operations for Bazel builds
 - [**moonbit_checksum_updater**](https://github.com/pulseengine/moonbit_checksum_updater) &mdash; Native MoonBit checksum management with GitHub API integration
 
 </details>
