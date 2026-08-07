@@ -2,157 +2,98 @@
 
 # PulseEngine
 
-<sup>Formally verified WebAssembly toolchain for safety-critical systems</sup>
+<sup>A WebAssembly Component Model toolchain for safety-critical systems, with formally verified components</sup>
 
 &nbsp;
 
 ![Rust](https://img.shields.io/badge/Rust-CE422B?style=flat-square&logo=rust&logoColor=white&labelColor=1a1b27)
 ![WebAssembly](https://img.shields.io/badge/WebAssembly-654FF0?style=flat-square&logo=webassembly&logoColor=white&labelColor=1a1b27)
 ![Bazel](https://img.shields.io/badge/Bazel-43A047?style=flat-square&logo=bazel&logoColor=white&labelColor=1a1b27)
-![Formally Verified](https://img.shields.io/badge/Formally_Verified-00C853?style=flat-square&logoColor=white&labelColor=1a1b27)
 
-&nbsp;
-
-[<kbd> &nbsp; Repositories &nbsp; </kbd>](https://github.com/orgs/pulseengine/repositories) &nbsp;&nbsp; [<kbd> &nbsp; Website &nbsp; </kbd>](https://pulseengine.eu) &nbsp;&nbsp; [<kbd> &nbsp; Examples &nbsp; </kbd>](https://github.com/pulseengine/wasm-component-examples)
-
-<h6>
-  <a href="https://github.com/pulseengine/kiln">Kiln</a>
-  ·
-  <a href="https://github.com/pulseengine/meld">Meld</a>
-  ·
-  <a href="https://github.com/pulseengine/loom">Loom</a>
-  ·
-  <a href="https://github.com/pulseengine/synth">Synth</a>
-  ·
-  <a href="https://github.com/pulseengine/sigil">Sigil</a>
-</h6>
+[<kbd> &nbsp; Repositories &nbsp; </kbd>](https://github.com/orgs/pulseengine/repositories) &nbsp;&nbsp; [<kbd> &nbsp; Website &nbsp; </kbd>](https://pulseengine.eu) &nbsp;&nbsp; [<kbd> &nbsp; How it works &nbsp; </kbd>](https://pulseengine.eu/how-it-works/) &nbsp;&nbsp; [<kbd> &nbsp; Examples &nbsp; </kbd>](https://github.com/pulseengine/wasm-component-examples)
 
 </div>
 
 &nbsp;
 
-## The Pipeline
+## The pipeline
 
-Meld fuses. Loom weaves. Synth transpiles. Kiln fires. Sigil seals.
+Components are composed at build time and lowered to native code — the interface boundaries exist while you build and are gone when you ship.
 
-<table align="center">
-<tr>
-  <td align="center"><code>.wasm</code></td>
-  <td align="center">&nbsp;→&nbsp;</td>
-  <td align="center"><a href="https://github.com/pulseengine/meld"><strong>Meld</strong><br><sub>fuse</sub></a></td>
-  <td align="center">&nbsp;→&nbsp;</td>
-  <td align="center"><a href="https://github.com/pulseengine/loom"><strong>Loom</strong><br><sub>optimize</sub></a></td>
-  <td align="center">&nbsp;→&nbsp;</td>
-  <td align="center"><a href="https://github.com/pulseengine/synth"><strong>Synth</strong><br><sub>transpile</sub></a></td>
-  <td align="center">&nbsp;→&nbsp;</td>
-  <td align="center"><a href="https://github.com/pulseengine/kiln"><strong>Kiln</strong><br><sub>fire</sub></a></td>
-</tr>
-<tr>
-  <td colspan="9" align="center"><sub><a href="https://github.com/pulseengine/sigil">sigil</a> · attest · sign · verify</sub></td>
-</tr>
-</table>
+```
+components ──▶ meld ──▶ loom ──▶ synth ──▶ native
+                fuse    optimize  compile
+                                            kiln — interpret, on host or device
+```
 
-&nbsp;
+Everything the pipeline produces is signed and attested by **sigil**; everything it claims is traced by **rivet**.
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### [Meld](https://github.com/pulseengine/meld)
-
-Statically fuses multiple WebAssembly components into a single core module. Import resolution, index-space merging, and canonical ABI adapter generation happen at build time — runtime linking eliminated entirely. Every transformation carries mechanized proofs covering parsing, resolution, merging, and adapter correctness.
-
-</td>
-<td width="50%" valign="top">
-
-### [Loom](https://github.com/pulseengine/loom)
-
-Twelve-pass WebAssembly optimization pipeline built on Cranelift's ISLE pattern-matching engine. Constant folding, strength reduction, CSE, inlining, dead code elimination — each pass proven correct through SMT translation validation and mechanized proofs. Includes a fused mode purpose-built for Meld output.
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### [Synth](https://github.com/pulseengine/synth)
-
-Transpiles WebAssembly to native ARM for embedded Cortex-M targets. Not just translation — program synthesis: exploring equivalent implementations for provably optimal native code. Pattern-based instruction selection, AAPCS calling conventions, and ELF generation. Translation validation ensures the transpiled output faithfully preserves WebAssembly semantics.
-
-</td>
-<td width="50%" valign="top">
-
-### [Kiln](https://github.com/pulseengine/kiln)
-
-![no_std](https://img.shields.io/badge/no__std-compatible-654FF0?style=flat-square&labelColor=1a1b27)
-
-WebAssembly runtime for safety-critical systems. Full Component Model and WASI 0.2 support with a modular `no_std` architecture for embedded, automotive, medical, and aerospace environments. Bounded allocations, deterministic execution, and memory safety through bounded model checking and formal verification.
-
-</td>
-</tr>
-</table>
+| | |
+|---|---|
+| [**meld**](https://github.com/pulseengine/meld) | Statically fuses WebAssembly components into one core module — import resolution, index-space merging, canonical-ABI adapter generation at build time, so nothing links at runtime. |
+| [**loom**](https://github.com/pulseengine/loom) | WebAssembly optimizer. Each rewrite is checked by SMT translation validation *per run* — a validated pass, not a verified tool. |
+| [**synth**](https://github.com/pulseengine/synth) | **Transcodes** WebAssembly to native ARM and RISC-V via program synthesis, targeting bare-metal Cortex-M/R. Declines an operation loudly rather than emitting code it cannot justify. |
+| [**kiln**](https://github.com/pulseengine/kiln) | WebAssembly interpreter and runtime — full Component Model and WASI 0.2, with a `no_std` path for embedded. |
+| [**sigil**](https://github.com/pulseengine/sigil) | Signing and attestation. Each stage records what changed, which tool version ran, and the hashes in and out; signatures embed in the module itself, and verification works offline for air-gapped devices. |
 
 &nbsp;
 
-### [Sigil](https://github.com/pulseengine/sigil) &mdash; Supply Chain Security
+## Verification
 
-![Sigstore](https://img.shields.io/badge/Sigstore-keyless_signing-654FF0?style=flat-square&labelColor=1a1b27)
-![SLSA](https://img.shields.io/badge/SLSA-L4_provenance-00C853?style=flat-square&labelColor=1a1b27)
+Different techniques, named separately — because they prove different things.
 
-The cryptographic backbone of the pipeline. Every stage — fusion, optimization, compilation — creates a signed transformation attestation recording what changed, which tool version ran, and cryptographic hashes of inputs and outputs. The full chain is verifiable end-to-end.
+| | |
+|---|---|
+| [**rivet**](https://github.com/pulseengine/rivet) | Typed SDLC artifacts and traceability. Requirements, design, verification and their links as a checked graph; release readiness is a query over closed evidence rather than a date. |
+| [**witness**](https://github.com/pulseengine/witness) | MC/DC structural coverage measured on the **lowered WebAssembly the runtime executes**, not on the source it came from. |
+| [**scry**](https://github.com/pulseengine/scry) | Sound abstract interpretation — over-approximates, so it never misses a behaviour that can occur. Mechanized Rocq soundness proofs for specific domains. |
+| [**ordeal**](https://github.com/pulseengine/ordeal) | Certificate-checked QF_BV SMT. The solver is untrusted; an independent, formally-verified LRAT checker re-derives every UNSAT. |
+| [**spar**](https://github.com/pulseengine/spar) | Architecture models — AADL v2.3, SysML v2, CAN-DBC — with 30+ analyses including scheduling, fault trees and network-calculus timing bounds, and Lean proofs of the analyses themselves. |
+| [**gale**](https://github.com/pulseengine/gale) | Formally verified Rust replacements for Zephyr RTOS kernel primitives (Verus + Rocq + Lean), composing toward `gust` — an OS built from verified components. |
 
-Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool version and hash constraints. Hardware security via TPM 2.0. Offline verification for air-gapped embedded environments. IoT device provisioning with pre-provisioned trust bundles. All signatures embedded directly in WebAssembly modules — no external registry required.
-
-&nbsp;
-
-> [!NOTE]
-> **Correctness at every layer** &mdash; Rocq mechanized proofs, Kani bounded model checking, Z3 SMT verification, and Verus Rust verification are used across the toolchain — not confined to individual projects. Sigil attestation chains bind it all together. No transformation ships without a proof.
-
-&nbsp;
-
-<details open>
-<summary><b>Safety-Critical Systems</b></summary>
+> **What "verified" means here.** Verus (SMT, partial correctness, declared trusted base) · Kani (**bounded** model checking) · Rocq and Lean (specific theorems) · translation validation (per run, not the tool) · sound static analysis. Specific properties of specific components are proven. The toolchain as a whole is not, and we don't claim it is — see the [preprint](https://pulseengine.eu/publications/) for where the gates are still weak.
 
 &nbsp;
 
-- [**gale**](https://github.com/pulseengine/gale) &mdash; Formally verified Rust port of Zephyr RTOS kernel primitives for ASIL-D, dual-track Verus and Rocq verification
-- [**spar**](https://github.com/pulseengine/spar) &mdash; AADL v2.2 architecture analysis toolchain — parser, semantic model, 30+ analyses, and LSP server
-- [**rivet**](https://github.com/pulseengine/rivet) &mdash; Schema-driven SDLC artifact manager for requirements traceability and safety compliance
+## Applied
+
+| | |
+|---|---|
+| [**relay**](https://github.com/pulseengine/relay) | Flight software as WebAssembly components, inspired by NASA's cFS. |
+| [**wohl**](https://github.com/pulseengine/wohl) | OTA update and device lifecycle. |
+| [**jess**](https://github.com/pulseengine/jess) | Hardware integration — getting verified components onto real boards and into flight. |
+
+&nbsp;
+
+<details>
+<summary><b>Build &amp; toolchain</b></summary>
+
+&nbsp;
+
+- [**varve**](https://github.com/pulseengine/varve) — pinned, signed, dated toolchain bundles; projects freeze on a layer and stay there *(design)*
+- [**rules_wasm_component**](https://github.com/pulseengine/rules_wasm_component) — Bazel rules for the Component Model across Rust, Go, C++, JavaScript
+- [**rules_rocq_rust**](https://github.com/pulseengine/rules_rocq_rust) · [**rules_verus**](https://github.com/pulseengine/rules_verus) · [**rules_lean**](https://github.com/pulseengine/rules_lean) · [**rules_ordeal**](https://github.com/pulseengine/rules_ordeal) — hermetic Bazel rules for the proof and verification toolchains
+- [**temper**](https://github.com/pulseengine/temper) — GitHub App that holds repositories to organizational standards
 
 </details>
 
 <details>
-<summary><b>Build & Verification</b></summary>
+<summary><b>Agents &amp; MCP</b></summary>
 
 &nbsp;
 
-- [**rules_wasm_component**](https://github.com/pulseengine/rules_wasm_component) &mdash; Bazel rules for WebAssembly Component Model across Rust, Go, C++, and JavaScript
-- [**rules_rocq_rust**](https://github.com/pulseengine/rules_rocq_rust) &mdash; Bazel rules for Rocq theorem proving and Rust formal verification with hermetic Nix toolchains
-- [**rules_verus**](https://github.com/pulseengine/rules_verus) &mdash; Bazel rules for Verus Rust verification
-- [**rules_moonbit**](https://github.com/pulseengine/rules_moonbit) &mdash; Bazel rules for MoonBit with hermetic toolchain support
-- [**rules_lean**](https://github.com/pulseengine/rules_lean) &mdash; Bazel rules for Lean 4 with Mathlib and Aeneas integration
+- [**mcp**](https://github.com/pulseengine/mcp) — Rust framework for Model Context Protocol servers and clients
+- [**template-mcp-server**](https://github.com/pulseengine/template-mcp-server) — scaffolding for a new MCP server
 
 </details>
 
 <details>
-<summary><b>AI & MCP</b></summary>
+<summary><b>Examples &amp; utilities</b></summary>
 
 &nbsp;
 
-- [**mcp**](https://github.com/pulseengine/mcp) &mdash; Rust framework for building Model Context Protocol servers and clients, published to crates.io
-- [**template-mcp-server**](https://github.com/pulseengine/template-mcp-server) &mdash; Scaffolding template for creating MCP servers in Rust
-- [**timedate-mcp**](https://github.com/pulseengine/timedate-mcp) &mdash; MCP server for time and date operations with timezone support, published to npm
-
-</details>
-
-<details>
-<summary><b>Developer Tools</b></summary>
-
-&nbsp;
-
-- [**temper**](https://github.com/pulseengine/temper) &mdash; GitHub App that hardens repositories to organizational standards
-- [**wasm-component-examples**](https://github.com/pulseengine/wasm-component-examples) &mdash; Working examples for Component Model development in C, C++, Go, and Rust
-- [**bazel-file-ops-component**](https://github.com/pulseengine/bazel-file-ops-component) &mdash; WebAssembly-based cross-platform file operations for Bazel builds
-- [**moonbit_checksum_updater**](https://github.com/pulseengine/moonbit_checksum_updater) &mdash; Native MoonBit checksum management with GitHub API integration
+- [**wasm-component-examples**](https://github.com/pulseengine/wasm-component-examples) — Component Model examples in C, C++, Go, Rust
+- [**bazel-file-ops-component**](https://github.com/pulseengine/bazel-file-ops-component) — cross-platform file operations for Bazel, as a Wasm component
 
 </details>
 
@@ -162,6 +103,8 @@ Sigstore keyless signing for CI/CD. SLSA policy enforcement with per-tool versio
 
 <div align="center">
 
-<sub>Rust · WebAssembly Component Model · WASI 0.2 · 0.3 · Bazel · Rocq · Z3 · Kani · Verus · Sigstore</sub>
+<sub>Rust · WebAssembly Component Model · WASI 0.2 · Bazel · Verus · Rocq · Lean · Kani · Sigstore</sub>
+
+<sub>Everything is work in progress. Claims are scoped to what is checked.</sub>
 
 </div>
