@@ -83,7 +83,6 @@ Different techniques, named separately — because they prove different things.
 &nbsp;
 
 - [**mcp**](https://github.com/pulseengine/mcp) — Rust framework for Model Context Protocol servers and clients
-- [**template-mcp-server**](https://github.com/pulseengine/template-mcp-server) — scaffolding for a new MCP server
 
 </details>
 
