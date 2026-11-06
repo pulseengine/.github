@@ -2,7 +2,7 @@
 
 # PulseEngine
 
-<sup>A WebAssembly Component Model toolchain for safety-critical systems, with formally verified components</sup>
+<sup>A WebAssembly Component Model engine for safety-critical systems, with machine-checked proofs of specific properties</sup>
 
 &nbsp;
 
@@ -22,7 +22,7 @@ Components are composed at build time and lowered to native code — the interfa
 
 ```
 components ──▶ meld ──▶ loom ──▶ synth ──▶ native
-                fuse    optimize  compile
+                fuse    optimize  transcode
                                             kiln — interpret, on host or device
 ```
 
@@ -51,7 +51,7 @@ Different techniques, named separately — because they prove different things.
 | [**spar**](https://github.com/pulseengine/spar) | Architecture models — AADL v2.3, SysML v2, CAN-DBC — with 30+ analyses including scheduling, fault trees and network-calculus timing bounds, and Lean proofs of the analyses themselves. |
 | [**gale**](https://github.com/pulseengine/gale) | Formally verified Rust replacements for Zephyr RTOS kernel primitives (Verus + Rocq + Lean), composing toward `gust` — an OS built from verified components. |
 
-> **What "verified" means here.** Verus (SMT, partial correctness, declared trusted base) · Kani (**bounded** model checking) · Rocq and Lean (specific theorems) · translation validation (per run, not the tool) · sound static analysis. Specific properties of specific components are proven. The toolchain as a whole is not, and we don't claim it is — see the [preprint](https://pulseengine.eu/publications/) for where the gates are still weak.
+> **What "verified" means here.** Verus (SMT, partial correctness, declared trusted base) · Kani (**bounded** model checking) · Rocq and Lean (specific theorems) · translation validation (per run, not the tool) · sound static analysis. Specific properties of specific components are proven. The engine as a whole is not, and we don't claim it is — see the [preprint](https://pulseengine.eu/publications/) for where the gates are still weak.
 
 &nbsp;
 
@@ -70,10 +70,11 @@ Different techniques, named separately — because they prove different things.
 
 &nbsp;
 
-- [**varve**](https://github.com/pulseengine/varve) — pinned, signed, dated toolchain bundles; projects freeze on a layer and stay there *(design)*
+- [**varve**](https://github.com/pulseengine/varve) — pinned, signed, dated toolchain bundles; projects freeze on a layer and stay there
 - [**rules_wasm_component**](https://github.com/pulseengine/rules_wasm_component) — Bazel rules for the Component Model across Rust, Go, C++, JavaScript
 - [**rules_rocq_rust**](https://github.com/pulseengine/rules_rocq_rust) · [**rules_verus**](https://github.com/pulseengine/rules_verus) · [**rules_lean**](https://github.com/pulseengine/rules_lean) · [**rules_ordeal**](https://github.com/pulseengine/rules_ordeal) — hermetic Bazel rules for the proof and verification toolchains
 - [**temper**](https://github.com/pulseengine/temper) — GitHub App that holds repositories to organizational standards
+- [**warte**](https://github.com/pulseengine/warte) — the control tower: CI dashboard with an ask feature and an API
 
 </details>
 
